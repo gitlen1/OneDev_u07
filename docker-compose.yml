@@ -1,0 +1,27 @@
+version: '3'
+services:
+  onedev:
+    image: onedev/server
+    
+
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - ./prometheus:/etc/prometheus
+    
+
+  grafana:
+    image: grafana/grafana
+    ports:
+      - "3000:3000"
+    
+
+  registry:
+    image: registry:2
+  
+
+  exporter:
+    build:
+      context: ./prometheus
+    ports:
+      - "9101:9101" 
